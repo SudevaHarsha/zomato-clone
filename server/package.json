@@ -18,7 +18,7 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
-    "dotnet": "^1.1.4",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.2"
   }
