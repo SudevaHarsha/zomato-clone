@@ -2,22 +2,29 @@
 
 var _express = _interopRequireDefault(require("express"));
 var _dotenv = _interopRequireDefault(require("dotenv"));
-var _connection = _interopRequireDefault(require("./database/connection.js"));
+var _connection = _interopRequireDefault(require("./database/connection"));
+var _auth = _interopRequireDefault(require("./api/auth"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// Database connection
+
 _dotenv.default.config();
 const zomato = (0, _express.default)();
 zomato.use(_express.default.json());
 zomato.get("/", (req, res) => {
   res.json({
-    message: "server is runnig.."
+    message: "Server is running.."
   });
 });
-const port = 4000;
-zomato.listen(port, () => {
+
+// /auth/signup
+zomato.use("/auth", _auth.default);
+const PORT = 4000;
+zomato.listen(PORT, () => {
   (0, _connection.default)().then(() => {
-    console.log("running");
+    console.log("Server is running !!");
   }).catch(error => {
-    console.log('server is running but DB connection is failed');
+    console.log("Server is running, but the database connection failed");
     console.log(error);
   });
+  // console.log("Server is running !!");
 });
