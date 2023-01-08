@@ -4,7 +4,7 @@ const OrderSchema = new mongoose.Schema(
     {
         user:{
             type:mongoose.Types.ObjectId,
-            ref:"users"
+            ref:"users",
         },
         orderDeatils:[
             {
