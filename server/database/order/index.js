@@ -27,9 +27,9 @@ const OrderSchema = new mongoose.Schema(
 
 
 
-                }
-            }
-        ]
+                },
+            },
+        ],
     },
     {
         timestamps: true,

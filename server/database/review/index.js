@@ -18,4 +18,4 @@ const ReviewSchema = new mongoose.Schema(
         timestamps:true,
     }
 );
-export const RestaurantModel = mongoose.model("restaurants",RestaurantSchema);
+export const ReviewModel = mongoose.model("reviews",ReviewSchema);
