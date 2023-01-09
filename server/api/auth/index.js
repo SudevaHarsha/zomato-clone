@@ -32,8 +32,8 @@ Router.post("/signin", async (req, res) => {
 
 Router.get("/google", passport.authenticate("google", {
   scope: [
-    "https://www.google.com/auth/userinfo.profile",
-    "https://www.google.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email",
   ],
 })
 );
@@ -42,7 +42,7 @@ Router.get(
   "/google/callback", 
   passport.authenticate("google", {failureRedirect: "/"}),
   (req,res)=>{
-    return res.status(200).json({token:req.session.passport.user});
+    return res.status(200).json({token: req.session.passport.user.token});
   }
 );
 
