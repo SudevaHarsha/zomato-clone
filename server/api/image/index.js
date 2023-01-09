@@ -22,14 +22,27 @@ Router.get("/:_id",async(req,res)=>{
         return res.status(500).json({error:error.message})
     }
 })
-Router.post("/:_id",async(req,res)=>{
+Router.post("/", upload.single("file"),async(req,res)=>{
     try{
-        const file = req.file
+        const file = req.file;
         const bucketOptions = {
             Bucket:"zomato-clone",
+            key: file.originalname,
+            Body: file.buffer,
+            ContentType: file.mimetype,
+            ACL: "public-read"
             
 
         }
+        const UploadImage= await s3Upload(bucketOptions);
+        const dbUpload= await ImageModel.create({
+            images:[
+                {
+                    location: UploadImage.Location,
+                },
+            ]
+        })
+        return res.status(200).json({UploadImage});
     }
     catch(error){
         return res.status(500).json({error:error.message})
