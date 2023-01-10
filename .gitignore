@@ -1,4 +1,7 @@
 /server/.env
-/server/node_modules
 /server/package-lock.json
+/server/node_modules
 /server/dist
+
+/client/package-lock.json
+/client/node_modules
