@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, Navigate} from 'react-router-dom';
 /* import { Menu } from '@headlessui/react';
  *///import pages
-import Checkout from './pages/checkout.page';
+import Checkout from './pages/Checkout.page';
 import GoogleAuth from './pages/GoogleAuth.page';
 import Home from './pages/Home.page';
 import Restaurant from './pages/Restaurant.page';
@@ -26,7 +26,7 @@ function App() {
 
     <Route path="/restaurant/:id/menu" element={<Menu />} />
     <Route path="/restaurant/:id/photos" element={<Photos />} />
-    <Route path="checkout//orders" element={<Checkout />} />
+    <Route path="checkout/orders" element={<Checkout />} />
 
   </Routes>
   </>

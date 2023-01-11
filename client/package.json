@@ -17,8 +17,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-simple-image-viewer": "^1.2.2",
-    "swiper": "^8.4.5",
-    "web-vitals": "^2.1.4"
+    "swiper": "^8.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
