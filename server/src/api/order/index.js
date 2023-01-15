@@ -1,15 +1,16 @@
 import express from "express";
 import passport from "passport";
-import { OrderModel } from "../../database/order";
+
+import { OrderModel } from "../../database/allModels";
 
 const Router = express.Router();
 
 /**
- * Route :   /
- * Desc  :   Get all orders by user id
- * params:   none
- * Access:   Private
- * Method:   GET
+ * Route     /
+ * Des       Get all orders by user id
+ * Params    none
+ * Access    Private
+ * Method    GET
  */
 Router.get(
   "/",
@@ -17,11 +18,13 @@ Router.get(
   async (req, res) => {
     try {
       const { user } = req;
+
       const getOrders = await OrderModel.findOne({ user: user._id });
-      if (!getOrders)
-        return res
-          .status(400)
-          .json({ error: "No order for this user found here" });
+
+      if (!getOrders) {
+        return res.status(400).json({ error: "User not found" });
+      }
+
       return res.status(200).json({ orders: getOrders });
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -30,11 +33,11 @@ Router.get(
 );
 
 /**
- * Route :   /new
- * Desc  :   Add new order
- * params:   none
- * Access:   Private
- * Method:   PUT
+ * Route     /new
+ * Des       Add new order
+ * Params    none
+ * Access    Private
+ * Method    PUT
  */
 Router.put(
   "/new",
@@ -44,6 +47,9 @@ Router.put(
       const { user } = req;
 
       const { orderDetails } = req.body;
+
+      // Task: Validate orderDetails
+
       const addNewOrder = await OrderModel.findOneAndUpdate(
         {
           user: user._id,
@@ -57,6 +63,7 @@ Router.put(
           new: true,
         }
       );
+
       return res.json({ order: addNewOrder });
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -65,13 +72,3 @@ Router.put(
 );
 
 export default Router;
-
-
-
-/***
- * 5-15 => alternative
- * sat-sun 
- * 2+2
- * 4 days aws, devops
- * 
- */
